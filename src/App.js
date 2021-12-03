@@ -1,24 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import AboutMe from './components/AboutMe'
+import Town from './components/MyTown';
+import { useState } from 'react';
 
 function App() {
+  const [tabName, setTab] = useState('a');
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+    <>
+      <header>
+        <div className="d-flex justify-content-start m-4">
+            <h3>
+              <span className={`me-3 pointer-curser ${ (tabName === 'a') ? 'text-primary' : ''}`} onClick={() => {setTab('a')}}>
+                About me
+              </span>
+              <span className={`me-3 pointer-curser ${ (tabName === 'a') ? '' : 'text-primary'}`} onClick={() => {setTab('t')}}>
+                My Town
+              </span>
+            </h3>
+          </div>
       </header>
-    </div>
+      <main className="d-flex m-4">
+      { tabName == 't' ? <Town/> : <AboutMe/>}
+      </main>
+    </>
   );
 }
 
